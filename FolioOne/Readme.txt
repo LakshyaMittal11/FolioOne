@@ -1,9 +1,4 @@
-Thanks for downloading this template!
 
-Template Name: FolioOne
-Template URL: https://bootstrapmade.com/folioone-bootstrap-portfolio-website-template/
-Author: BootstrapMade.com
-License: https://bootstrapmade.com/license/
 var: It is an old way of declaring variables. It has function scope and allows both redeclaration and reassignment.
 
 let: It is a modern way of declaring variables. It has block scope and allows reassignment but does not allow redeclaration in the same scope. It is used when the value of a variable needs to change.

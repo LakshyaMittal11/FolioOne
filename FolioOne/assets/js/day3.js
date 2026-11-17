@@ -1,5 +1,7 @@
 
 document.addEventListener("DOMContentLoaded", () => {
+
+  // CONTACT FORM VALIDATION
   const form = document.querySelector("#day3ContactForm");
 
   if (form) {
@@ -15,61 +17,138 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (!name || !email || !message) {
         result.textContent = "All fields are required";
+        result.style.color = "red";
         return;
       }
 
       if (!emailPattern.test(email)) {
         result.textContent = "Enter a valid email";
+        result.style.color = "red";
         return;
       }
 
       result.textContent = "Form validated successfully!";
+      result.style.color = "green";
       form.reset();
     });
   }
-});
 
-document.addEventListener("DOMContentLoaded", () => {
+
+  // DYNAMIC LIST + AUTOCOMPLETE
   const input = document.querySelector("#itemInput");
   const addBtn = document.querySelector("#addBtn");
   const itemList = document.querySelector("#itemList");
+  const suggestionList = document.querySelector("#suggestionList");
 
-  if (!input || !addBtn || !itemList) return;
+  if (!input || !addBtn || !itemList || !suggestionList) {
+    return;
+  }
+
+  // Available suggestions
+  const suggestions = [
+    "Java",
+    "JavaScript",
+    "Java Developer",
+    "Java Programming",
+    "Python",
+    "Python Developer",
+    "React",
+    "React Native",
+    "Rahul",
+    "Rohit",
+    "HTML",
+    "CSS",
+    "Bootstrap",
+    "Node.js",
+    "Express.js",
+    "MySQL"
+  ];
 
   let items = [];
 
+  // Show suggestions while typing
+  input.addEventListener("input", () => {
+    const word = input.value.trim().toLowerCase();
+
+    suggestionList.innerHTML = "";
+
+    if (word === "") return;
+
+    const matchedWords = suggestions.filter(skill =>
+      skill.toLowerCase().includes(word)
+    );
+
+    matchedWords.forEach(skill => {
+      const li = document.createElement("li");
+
+      li.className =
+        "list-group-item list-group-item-action";
+
+      li.textContent = skill;
+      li.style.cursor = "pointer";
+
+      li.addEventListener("click", () => {
+        input.value = skill;
+        suggestionList.innerHTML = "";
+      });
+
+      suggestionList.appendChild(li);
+    });
+  });
+
+  // Render added skills
   function renderItems() {
     itemList.innerHTML = "";
 
     items.forEach((item, index) => {
       const li = document.createElement("li");
-      li.textContent = item + " ";
+
+      li.className =
+        "list-group-item d-flex justify-content-between align-items-center";
+
+      const span = document.createElement("span");
+      span.textContent = item;
 
       const deleteBtn = document.createElement("button");
       deleteBtn.textContent = "Delete";
+      deleteBtn.className = "btn btn-danger btn-sm";
 
       deleteBtn.addEventListener("click", () => {
         items = items.filter((_, i) => i !== index);
         renderItems();
       });
 
+      li.appendChild(span);
       li.appendChild(deleteBtn);
       itemList.appendChild(li);
     });
   }
 
-  addBtn.addEventListener("click", () => {
+  // Add skill
+  function addItem() {
     const value = input.value.trim();
 
     if (value === "") return;
 
     items.push(value);
     input.value = "";
+    suggestionList.innerHTML = "";
+
     renderItems();
+  }
+
+  addBtn.addEventListener("click", addItem);
+
+  input.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      addItem();
+    }
   });
+
 });
 
-// 1. Double numbers using map
+
+// 1. Double numbers using map()
 function doubleNumbers(numbers) {
   return numbers.map(num => num * 2);
 }

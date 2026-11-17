@@ -138,7 +138,7 @@
     </section><!-- /Hero Section -->
 
 
-<!-- Dynamic List Section -->
+
 <section id="dynamic-list" class="section">
   <div class="container">
 
@@ -150,25 +150,32 @@
           type="text"
           id="itemInput"
           class="form-control"
-          placeholder="Enter a skill (e.g. JavaScript)"
+          placeholder="Type any word..."
+          autocomplete="off"
         >
+
+        <!-- Autocomplete Suggestions -->
+        <ul id="suggestionList"
+            class="list-group mt-1"></ul>
       </div>
 
       <div class="col-md-4">
-        <button
-          type="button"
-          id="addBtn"
-          class="btn btn-primary">
+        <button id="addBtn"
+                type="button"
+                class="btn btn-primary">
           Add Skill
         </button>
       </div>
     </div>
 
+    <h4>Added Skills</h4>
     <ul id="itemList" class="list-group"></ul>
 
   </div>
+  
 </section>
-<!-- /Dynamic List Section -->
+
+
 
 
 
