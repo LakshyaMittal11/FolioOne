@@ -68,3 +68,53 @@ document.addEventListener("DOMContentLoaded", () => {
     renderItems();
   });
 });
+
+// 1. Double numbers using map
+function doubleNumbers(numbers) {
+  return numbers.map(num => num * 2);
+}
+
+// 2. Convert names to uppercase
+function uppercaseNames(names) {
+  return names.map(name => name.toUpperCase());
+}
+
+// 3. Filter even numbers
+function getEvenNumbers(numbers) {
+  return numbers.filter(num => num % 2 === 0);
+}
+
+// 4. Filter adults
+function getAdults(people) {
+  return people.filter(person => person.age >= 18);
+}
+
+// 5. Sum numbers
+function sumNumbers(numbers) {
+  return numbers.reduce((sum, num) => sum + num, 0);
+}
+
+// 6. Calculate total price
+function totalPrice(products) {
+  return products.reduce((total, p) => total + p.price, 0);
+}
+
+// 7. Find user by ID
+function findUser(users, id) {
+  return users.find(user => user.id === id);
+}
+
+// 8. Find expensive product
+function findExpensiveProduct(products) {
+  return products.find(p => p.price > 1000);
+}
+
+// 9. Get active usernames
+function activeUsernames(users) {
+  return users.filter(u => u.active).map(u => u.name);
+}
+
+// 10. Count completed tasks
+function countCompleted(tasks) {
+  return tasks.filter(task => task.completed).length;
+}
